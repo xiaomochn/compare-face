@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DoubleChoseViewController.h
 //  compareface
 //
 //  Created by qiao on 15/6/5.
@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MAOFlipViewController.h"
-@interface ViewController : UIViewController
 
+@interface DoubleChoseViewController : UIViewController
 
 @end
-

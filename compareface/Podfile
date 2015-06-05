@@ -1,0 +1,3 @@
+platform :ios
+ pod 'MAOFlipViewController', '~> 0.0.1'
+ pod 'FaceppSDK', '~> 2.0.0'

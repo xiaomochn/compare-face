@@ -11,7 +11,7 @@
 
 @interface SingChoseViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UIImageView *imageView;
-    IBOutlet UIButton *button;
+    
     UIImagePickerController *imagePicker;
 }
 

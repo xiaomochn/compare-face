@@ -20,11 +20,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="446" y="695"/>
         </scene>
         <!--Sing Chose View Controller-->
         <scene sceneID="iRY-xY-epz">
             <objects>
-                <viewController storyboardIdentifier="SingChoseViewController" id="JHZ-n1-8s9" customClass="SingChoseViewController" customModule="SingChoseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SingChoseViewController" id="JHZ-n1-8s9" customClass="SingChoseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qe1-65-A48"/>
                         <viewControllerLayoutGuide type="bottom" id="vTh-ze-g34"/>
@@ -32,40 +33,17 @@
                     <view key="view" contentMode="scaleToFill" id="bwL-LP-TEb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMk-na-ncJ">
-                                <rect key="frame" x="172" y="57" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pickFromCameraButtonPressed:" destination="JHZ-n1-8s9" eventType="touchUpInside" id="QzQ-ZT-Z42"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wev-QI-b0Y">
-                                <rect key="frame" x="172" y="118" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pickFromLibraryButtonPressed:" destination="JHZ-n1-8s9" eventType="touchUpInside" id="iG1-wC-eYd"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="KAA-Wy-6cG">
-                                <rect key="frame" x="258" y="236" width="240" height="128"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgZ-ed-CDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077" y="93"/>
+            <point key="canvasLocation" x="1153.5" y="280"/>
         </scene>
         <!--Double Chose View Controller-->
         <scene sceneID="ETV-uZ-ycB">
             <objects>
-                <viewController storyboardIdentifier="DoubleChoseViewController" id="ftx-xh-SAu" customClass="DoubleChoseViewController" customModule="DoubleChoseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DoubleChoseViewController" id="ftx-xh-SAu" customClass="DoubleChoseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iLc-MJ-it4"/>
                         <viewControllerLayoutGuide type="bottom" id="jnp-1m-yR9"/>
@@ -74,25 +52,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKa-Re-cOD">
-                                <rect key="frame" x="89" y="166" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7S-vc-vfY">
-                                <rect key="frame" x="394" y="278" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="hLA-C8-YN8">
+                                <rect key="frame" x="113" y="446" width="240" height="128"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8e-II-4df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077" y="776"/>
+            <point key="canvasLocation" x="1144.5" y="1069"/>
         </scene>
     </scenes>
     <resources>

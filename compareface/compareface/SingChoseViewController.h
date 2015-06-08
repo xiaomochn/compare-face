@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "FaceppAPI.h"
-
+#import "AppDelegate.h"
+#import "MBProgressHUD.h"
 @interface SingChoseViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UIImageView *imageView;
-    
+    UIImageView *imageViewSecond;
+
     UIImagePickerController *imagePicker;
 }
 

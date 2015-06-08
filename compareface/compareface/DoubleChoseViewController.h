@@ -1,13 +1,19 @@
 //
-//  DoubleChoseViewController.h
-//  compareface
-//
-//  Created by qiao on 15/6/5.
-//  Copyright (c) 2015年 qiao. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
+#import "FaceppAPI.h"
 
-@interface DoubleChoseViewController : UIViewController
+#import "MBProgressHUD.h"
 
+@interface DoubleChoseViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+    IBOutlet UIImageView *imageView;
+    
+    UIImagePickerController *imagePicker;
+}
+
+
+-(IBAction)pickFromCameraButtonPressed:(id)sender;
+-(IBAction)pickFromLibraryButtonPressed:(id)sender;
+
+-(void) detectWithImage: (UIImage*) image;
 @end

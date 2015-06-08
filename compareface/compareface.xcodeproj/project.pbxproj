@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16D04B431B253DEB009BE577 /* btRippleButtton.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D04B421B253DEB009BE577 /* btRippleButtton.m */; };
+		16D04B441B253DFE009BE577 /* btRippleButtton.h in Sources */ = {isa = PBXBuildFile; fileRef = 16D04B411B253DEB009BE577 /* btRippleButtton.h */; };
+		16D04B481B254417009BE577 /* LTBounceSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D04B471B254417009BE577 /* LTBounceSheet.m */; };
 		16E2C3A51B218F0500482E5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C3A41B218F0500482E5E /* main.m */; };
 		16E2C3A81B218F0500482E5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C3A71B218F0500482E5E /* AppDelegate.m */; };
 		16E2C3AB1B218F0500482E5E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C3AA1B218F0500482E5E /* ViewController.m */; };
@@ -31,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16D04B411B253DEB009BE577 /* btRippleButtton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = btRippleButtton.h; path = ../../../../../.Trash/btRippleButton/btRippleButtton.h; sourceTree = "<group>"; };
+		16D04B421B253DEB009BE577 /* btRippleButtton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = btRippleButtton.m; path = ../../../../../.Trash/btRippleButton/btRippleButtton.m; sourceTree = "<group>"; };
+		16D04B461B254417009BE577 /* LTBounceSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBounceSheet.h; sourceTree = "<group>"; };
+		16D04B471B254417009BE577 /* LTBounceSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBounceSheet.m; sourceTree = "<group>"; };
 		16E2C39F1B218F0500482E5E /* compareface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = compareface.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E2C3A31B218F0500482E5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16E2C3A41B218F0500482E5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -75,6 +82,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16D04B401B253DCB009BE577 /* btRippleButton */ = {
+			isa = PBXGroup;
+			children = (
+				16D04B411B253DEB009BE577 /* btRippleButtton.h */,
+				16D04B421B253DEB009BE577 /* btRippleButtton.m */,
+			);
+			name = btRippleButton;
+			sourceTree = "<group>";
+		};
+		16D04B451B254401009BE577 /* LTBounceSheet */ = {
+			isa = PBXGroup;
+			children = (
+				16D04B461B254417009BE577 /* LTBounceSheet.h */,
+				16D04B471B254417009BE577 /* LTBounceSheet.m */,
+			);
+			name = LTBounceSheet;
+			sourceTree = "<group>";
+		};
 		16E2C3961B218F0500482E5E = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +123,8 @@
 		16E2C3A11B218F0500482E5E /* compareface */ = {
 			isa = PBXGroup;
 			children = (
+				16D04B451B254401009BE577 /* LTBounceSheet */,
+				16D04B401B253DCB009BE577 /* btRippleButton */,
 				16E2C42C1B2193E600482E5E /* ViewCoontroller */,
 				16E2C3A61B218F0500482E5E /* AppDelegate.h */,
 				16E2C3A71B218F0500482E5E /* AppDelegate.m */,
@@ -303,11 +330,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16D04B441B253DFE009BE577 /* btRippleButtton.h in Sources */,
 				16E2C3AB1B218F0500482E5E /* ViewController.m in Sources */,
 				16E2C4351B21988100482E5E /* MBProgressHUD.m in Sources */,
 				16E2C3A81B218F0500482E5E /* AppDelegate.m in Sources */,
 				16E2C4321B2194AE00482E5E /* DoubleChoseViewController.m in Sources */,
 				16E2C42F1B21941900482E5E /* SingChoseViewController.m in Sources */,
+				16D04B431B253DEB009BE577 /* btRippleButtton.m in Sources */,
+				16D04B481B254417009BE577 /* LTBounceSheet.m in Sources */,
 				16E2C3A51B218F0500482E5E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

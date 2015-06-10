@@ -13,8 +13,13 @@
 @interface SingChoseViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UIImageView *imageView;
     UIImageView *imageViewSecond;
-
+    UIImageView *imageViewhTemp;
     UIImagePickerController *imagePicker;
+    UILabel *resultLable;
+    NSDictionary *face1;
+    NSDictionary *face2;
+    UIImage *firstImage;
+
 }
 
 -(IBAction)pickFromCameraButtonPressed:(id)sender;

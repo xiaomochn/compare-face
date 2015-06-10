@@ -11,7 +11,7 @@
 #import "LTBounceSheet.h"
 
 #import "APIKeyAndAPISecret.h"
-
+#import "PulsingHaloLayer.h"
 #define color [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1]
 @interface SingChoseViewController ()
 @property(nonatomic,strong) LTBounceSheet *sheet;
@@ -30,18 +30,18 @@
     NSString *API_SECRET = @"pxyJuPZXukNG4JGPllXqooYaOOna4rIv";
     [FaceppAPI initWithApiKey:API_KEY andApiSecret:API_SECRET andRegion:APIServerRegionCN];
     
-    BTRippleButtton *rippleButton = [[BTRippleButtton alloc]initWithImage:[UIImage imageNamed:@"maincolor.png"]
-                                                                 andFrame:CGRectMake((kSCREEN_WIDTH)/2-50, (kSCREEN_HEIGHT)/2, 100, 100)
-                                                                andTarget:@selector(toggle)
-                                                                    andID:self];
-    
-    [rippleButton setRippeEffectEnabled:YES];
-    [rippleButton setRippleEffectWithColor:kMAIN_COLOOR];
-   
-    [self.view addSubview:rippleButton];
+    //    BTRippleButtton *rippleButton = [[BTRippleButtton alloc]initWithImage:[UIImage imageNamed:@"maincolor.png"]
+    //                                                                 andFrame:CGRectMake((kSCREEN_WIDTH)/2-50, (kSCREEN_HEIGHT)/2, 100, 100)
+    //                                                                andTarget:@selector(toggle)
+    //                                                                    andID:self];
+    //
+    //    [rippleButton setRippeEffectEnabled:YES];
+    //    [rippleButton setRippleEffectWithColor:kMAIN_COLOOR];
+    //
+    //    [self.view addSubview:rippleButton];
     // turn on the debug mode
     [FaceppAPI setDebugMode:TRUE];
-  
+    
     self.sheet = [[LTBounceSheet alloc]initWithHeight:250 bgColor:color];
     
     UIButton * option1 = [self produceButtonWithTitle:@"拍 照"];
@@ -57,10 +57,20 @@
     UIButton * cancel = [self produceButtonWithTitle:@"取消"];
     cancel.frame=CGRectMake(15, 170, kSCREEN_WIDTH-30, 46);
     [cancel addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
-
+    
     [self.sheet addView:cancel];
     
     [[[UIApplication sharedApplication] keyWindow] addSubview:self.sheet];
+    PulsingHaloLayer *halo = [PulsingHaloLayer layer];
+    
+    halo.position = self.view.center;
+    [self.view.layer addSublayer:halo];
+    
+    UIButton * rippleButton=[[UIButton alloc]initWithFrame:CGRectMake((kSCREEN_WIDTH)/2-100, (kSCREEN_HEIGHT)/2-100, 200, 200)];
+    [rippleButton addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:rippleButton];
+    resultLable=[[UILabel alloc] initWithFrame:CGRectMake(10, (kSCREEN_HEIGHT)-100, kSCREEN_WIDTH-20, 100)];
+    [self.view addSubview:resultLable];
     [self initall];
 }
 
@@ -81,7 +91,7 @@
 
 
 - (IBAction)toggleClickCM {
-     [self.sheet toggle];
+    [self.sheet toggle];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePicker.delegate = self;
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -98,7 +108,7 @@
     }
 }
 - (IBAction)toggleClickPT {
-     [self.sheet toggle];
+    [self.sheet toggle];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
     {
         imagePicker.delegate = self;
@@ -118,7 +128,7 @@
 }
 - (IBAction)toggle {
     [self.sheet toggle];
- 
+    
     
     
 }
@@ -142,7 +152,7 @@
                               cancelButtonTitle:@"OK!"
                               otherButtonTitles:nil];
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-       
+        
     }
 }
 
@@ -161,7 +171,7 @@
                               cancelButtonTitle:@"OK!"
                               otherButtonTitles:nil];
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-      
+        
     }
 }
 
@@ -243,8 +253,8 @@
 
 // Use facepp SDK to detect faces
 -(void) detectWithImage: (UIImage*) image {
-//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-   
+    //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
     FaceppResult *result = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(image, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeNone];
     if (result.success) {
         double image_width = [[result content][@"img_width"] doubleValue] *0.01f;
@@ -258,28 +268,100 @@
         
         // draw rectangle in the image
         int face_count = [[result content][@"face"] count];
-//        for (int i=0; i<face_count; i++) {
-//            double width = [[result content][@"face"][i][@"position"][@"width"] doubleValue];
-//            double height = [[result content][@"face"][i][@"position"][@"height"] doubleValue];
-//            CGRect rect = CGRectMake(([[result content][@"face"][i][@"position"][@"center"][@"x"] doubleValue] - width/2) * image_width,
-//                                     ([[result content][@"face"][i][@"position"][@"center"][@"y"] doubleValue] - height/2) * image_height,
-//                                     width * image_width,
-//                                     height * image_height);
-//            CGContextStrokeRect(context, rect);
-//        }
+        //        for (int i=0; i<face_count; i++) {
+        //            double width = [[result content][@"face"][i][@"position"][@"width"] doubleValue];
+        //            double height = [[result content][@"face"][i][@"position"][@"height"] doubleValue];
+        //            CGRect rect = CGRectMake(([[result content][@"face"][i][@"position"][@"center"][@"x"] doubleValue] - width/2) * image_width,
+        //                                     ([[result content][@"face"][i][@"position"][@"center"][@"y"] doubleValue] - height/2) * image_height,
+        //                                     width * image_width,
+        //                                     height * image_height);
+        //            CGContextStrokeRect(context, rect);
+        //        }
         
         UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-//        float scale = 1.0f;
-//        scale = MIN(scale, 280.0f/image.size.width);
-//        scale = MIN(scale, 257.0f/image.size.height);
-//        [imageView setFrame:CGRectMake(kSCREEN_WIDTH/2-image.size.width * scale/2,
-//                                       kSCREEN_HEIGHT/2-image.size.height * scale/2,
-//                                       image.size.width * scale,
-//                                       image.size.height * scale)];
-//        [imageView setImage:image];
-        FaceppResult *resultcoompare=[[[FaceppRecognition alloc ] init] compareWithFaceId1:[result content][@"face"][0][@"face_id"]  andId2:[result content][@"face"][1][@"face_id"]  async:NO];
-//        FaceppResult *resulu= [[[FaceppRecognition alloc] init] searchWithKeyFaceId:[result content][@"face"][0][@"face_id"] andFacesetId:nil orFacesetName:@"starlib3" andCount:nil async:NO];
+        //        float scale = 1.0f;
+        //        scale = MIN(scale, 280.0f/image.size.width);
+        //        scale = MIN(scale, 257.0f/image.size.height);
+        //        [imageView setFrame:CGRectMake(kSCREEN_WIDTH/2-image.size.width * scale/2,
+        //                                       kSCREEN_HEIGHT/2-image.size.height * scale/2,
+        //                                       image.size.width * scale,
+        //                                       image.size.height * scale)];
+        //        [imageView setImage:image];
+        
+        
+        
+        switch ([[result content][@"face"] count]) {
+            case 0:
+                 [resultLable setText:@"照片中没找到人，重新传一张试试"];
+                break;
+                
+            case 1:
+                [resultLable setText:@"就一个人怎么相貌啊，赶紧再添一张照片"];
+                face1=[result content][@"face"][0];
+                break;
+                
+            case 2:
+                face1=[result content][@"face"][0];
+                face2=[result content][@"face"][1];
+                [resultLable setText:@"疯狂的计算中 客观您稍等"];
+                if (face1!=nil&&face2!=nil) {
+                    FaceppResult *resultcoompare=[[[FaceppRecognition alloc ] init] compareWithFaceId1:[result content][@"face"][0][@"face_id"]  andId2:[result content][@"face"][1][@"face_id"]  async:NO];
+                    NSString *componentstr=[NSString stringWithFormat:@"匹配度是%d",(int )([resultcoompare content][@"similarity"])];
+                    
+                    double maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eye"] doubleValue];
+                    NSString *maxkey=@"眼睛";
+                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"nose"] doubleValue]) {
+                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"nose"] doubleValue];
+                        maxkey=@"鼻子";
+                    }
+                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue]) {
+                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue];
+                        maxkey=@"嘴";
+                    }
+                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue]) {
+                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue];
+                        maxkey=@"眼睫毛";
+                    }
+                    
+                    componentstr=[NSString stringWithFormat:@"%@,最像的地方是%@",componentstr,maxkey];
+                    [resultLable setText:componentstr];
+                }
+                break;
+                
+            default:
+                face1=[result content][@"face"][0];
+                face2=[result content][@"face"][1];
+               [resultLable setText:[NSString stringWithFormat:@"相片上总共找到%d个人,只计算前两个哦",[[result content][@"face"] count]]];
+                if (face1!=nil&&face2!=nil) {
+                    FaceppResult *resultcoompare=[[[FaceppRecognition alloc ] init] compareWithFaceId1:[result content][@"face"][0][@"face_id"]  andId2:[result content][@"face"][1][@"face_id"]  async:NO];
+                    NSString *componentstr=[NSString stringWithFormat:@"匹配度是%d ",(int)([resultcoompare content][@"similarity"] )];
+                   
+                    double maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eye"] doubleValue];
+                    NSString *maxkey=@"眼睛";
+                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"nose"] doubleValue]) {
+                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"nose"] doubleValue];
+                        maxkey=@"鼻子";
+                    }
+                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue]) {
+                         maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue];
+                        maxkey=@"嘴";
+                    }
+                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue]) {
+                         maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue];
+                        maxkey=@"眼睫毛";
+                    }
+                 
+                    componentstr=[NSString stringWithFormat:@"%@,最像的地方是%@",componentstr,maxkey];
+                    [resultLable setText:componentstr];
+                }
+                
+                break;
+        }
+        
+        
+        
+        //        FaceppResult *resulu= [[[FaceppRecognition alloc] init] searchWithKeyFaceId:[result content][@"face"][0][@"face_id"] andFacesetId:nil orFacesetName:@"starlib3" andCount:nil async:NO];
         
     } else {
         // some errors occurred
@@ -290,11 +372,11 @@
                               cancelButtonTitle:@"OK!"
                               otherButtonTitles:nil];
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-           }
-   
+    }
+    
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
-   
+    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -302,15 +384,15 @@
     
     UIImage *sourceImage = info[UIImagePickerControllerOriginalImage];
     
-
+    
     UIImage *imageToDisplay = [self fixOrientation:sourceImage];
     float scale = 1.0f;
     scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
     scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
     
-//    [imageView setImage:sourceImage];
+    //    [imageView setImage:sourceImage];
     // perform detection in background thread
-        [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissModalViewControllerAnimated:YES];
     if (imageView==nil) {
         imageView=[[UIImageView alloc] initWithImage:imageToDisplay];
         [imageView setFrame:CGRectMake(kSCREEN_WIDTH/2-imageToDisplay.size.width * scale/2,
@@ -320,26 +402,67 @@
         imageView.userInteractionEnabled=true;
         [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
         [self.view addSubview:imageView];
+    }else if(imageViewSecond==nil)
+    {
+        float scale = 1.0f;
+        scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
+        scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
+        scale=scale/2;
+        
+        imageViewSecond=[[UIImageView alloc] initWithImage:imageToDisplay];
+        [imageViewSecond setFrame:CGRectMake(kSCREEN_WIDTH,
+                                             kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
+                                             imageToDisplay.size.width * scale,
+                                             imageToDisplay.size.height * scale)];
+        imageViewSecond.userInteractionEnabled=true;
+        [imageViewSecond addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
+        [self.view addSubview:imageViewSecond];
+        [self performSelector:@selector(addphoto) withObject:nil afterDelay:0.1f];
     }else
     {
         float scale = 1.0f;
         scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
         scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
         scale=scale/2;
-
-        imageViewSecond=[[UIImageView alloc] initWithImage:imageToDisplay];
-        [imageViewSecond setFrame:CGRectMake(kSCREEN_WIDTH,
-                                       kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
-                                       imageToDisplay.size.width * scale,
-                                       imageToDisplay.size.height * scale)];
-        imageViewSecond.userInteractionEnabled=true;
-        [imageViewSecond addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
-        [self.view addSubview:imageViewSecond];
-       [self performSelector:@selector(addphoto) withObject:nil afterDelay:0.1f];
+        
+        imageViewhTemp=[[UIImageView alloc] initWithImage:imageToDisplay];
+        [imageViewhTemp setFrame:CGRectMake(kSCREEN_WIDTH,
+                                            kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
+                                            imageToDisplay.size.width * scale,
+                                            imageToDisplay.size.height * scale)];
+        imageViewhTemp.userInteractionEnabled=true;
+        [imageViewhTemp addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
+        [self.view addSubview:imageViewhTemp];
+        [self performSelector:@selector(addmorephoto) withObject:nil afterDelay:0.1f];
     }
-//     [self performSelectorInBackground:@selector(detectWithImage:) withObject:imageToDisplay ];
-
+    [resultLable setText:@"计算 计算"];
+    UIImage *imageToDetect=imageToDisplay;
+    if (firstImage!=nil) {
+        imageToDetect=[self addImage:imageToDisplay toImage:firstImage];
+        
+    }
+    firstImage=imageToDisplay;
+    [self performSelectorInBackground:@selector(detectWithImage:) withObject:imageToDetect ];
+    
 }
+
+- (UIImage *)addImage:(UIImage *)image2 toImage:(UIImage *)image1 {
+  
+    UIGraphicsBeginImageContext(CGSizeMake(image1.size.width+image2.size.width, MAX(image1.size.height, image2.size.height)));
+    
+    // Draw image1
+    [image1 drawInRect:CGRectMake(0, 0, image1.size.width, image1.size.height)];
+    
+    // Draw image2
+    [image2 drawInRect:CGRectMake(image1.size.width, 0, image2.size.width, image2.size.height)];
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultingImage;
+}  
+
 -(void)initall
 {
     
@@ -356,6 +479,49 @@
         rectsecond.origin.x=kSCREEN_WIDTH/2;
         imageViewSecond.frame=rectsecond;
         //            [self.view addSubview:imageViewSecond];
+    }];
+    
+}
+-(void)addmorephoto
+{
+    //    [UIView animateWithDuration:1 animations:^{
+    ////        CGRect rect=imageView.frame;
+    ////        rect.size.height=rect.size.height/2;
+    ////        rect.size.width=rect.size.width/2;
+    ////        rect.origin.y=kSCREEN_HEIGHT/2-rect.size.height/2;
+    ////        imageView.frame=rect;
+    ////        CGRect rectsecond=imageViewSecond.frame;
+    ////        rectsecond.origin.x=kSCREEN_WIDTH/2;
+    ////        imageViewSecond.frame=rectsecond;
+    //        //            [self.view addSubview:imageViewSecond];
+    //        [imageView removeFromSuperview];
+    //        imageView=imageViewSecond;
+    //        CGRect rect=imageView.frame;
+    //        rect.origin.x=kSCREEN_WIDTH/2-rect.size.width;
+    //        imageView.frame=rect;
+    //        imageViewSecond=imageViewhTemp;
+    //        CGRect rectsecond=imageViewSecond.frame;
+    //        rectsecond.origin.x=kSCREEN_WIDTH/2;
+    //        imageViewSecond.frame=rectsecond;
+    //
+    //    }];
+    [UIView animateWithDuration:1 animations:^{
+        UIImageView *temp=imageView;
+        
+        CGRect rect=imageView.frame;
+        rect.origin.x=-rect.size.width;
+        imageView.frame=rect;
+        imageView=imageViewSecond;
+        rect=imageView.frame;
+        rect.origin.x=kSCREEN_WIDTH/2-rect.size.width;
+        imageView.frame=rect;
+        imageViewSecond=imageViewhTemp;
+        CGRect rectsecond=imageViewSecond.frame;
+        rectsecond.origin.x=kSCREEN_WIDTH/2;
+        imageViewSecond.frame=rectsecond;
+        imageViewhTemp=temp;
+    } completion:^(BOOL finished) {
+        [imageViewhTemp removeFromSuperview];
     }];
     
 }

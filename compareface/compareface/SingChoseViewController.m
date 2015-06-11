@@ -335,7 +335,7 @@
                [resultLable setText:[NSString stringWithFormat:@"相片上总共找到%d个人,只计算前两个哦",[[result content][@"face"] count]]];
                 if (face1!=nil&&face2!=nil) {
                     FaceppResult *resultcoompare=[[[FaceppRecognition alloc ] init] compareWithFaceId1:[result content][@"face"][0][@"face_id"]  andId2:[result content][@"face"][1][@"face_id"]  async:NO];
-                    NSString *componentstr=[NSString stringWithFormat:@"匹配度是%d ",(int)([resultcoompare content][@"similarity"] )];
+                    NSString *componentstr=[NSString stringWithFormat:@"匹配度是%d ",(int)([[resultcoompare content][@"similarity"] doubleValue])];
                    
                     double maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eye"] doubleValue];
                     NSString *maxkey=@"眼睛";

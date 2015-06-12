@@ -12,6 +12,7 @@
 
 #import "APIKeyAndAPISecret.h"
 #import "PulsingHaloLayer.h"
+#import "UILabel+FlickerNumber.h"
 #define color [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1]
 @interface SingChoseViewController ()
 @property(nonatomic,strong) LTBounceSheet *sheet;
@@ -48,7 +49,7 @@
     option1.frame=CGRectMake(15, 30, kSCREEN_WIDTH-30, 46);
     [option1 addTarget:self action:@selector(toggleClickCM) forControlEvents:UIControlEventTouchUpInside];
     [self.sheet addView:option1];
-    
+    [self initall];
     UIButton * option2 = [self produceButtonWithTitle:@"从相册选择"];
     option2.frame=CGRectMake(15, 90, kSCREEN_WIDTH-30, 46);
     [option2 addTarget:self action:@selector(toggleClickPT) forControlEvents:UIControlEventTouchUpInside];
@@ -69,9 +70,9 @@
     UIButton * rippleButton=[[UIButton alloc]initWithFrame:CGRectMake((kSCREEN_WIDTH)/2-100, (kSCREEN_HEIGHT)/2-100, 200, 200)];
     [rippleButton addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:rippleButton];
-    resultLable=[[UILabel alloc] initWithFrame:CGRectMake(10, (kSCREEN_HEIGHT)-100, kSCREEN_WIDTH-20, 100)];
-    [self.view addSubview:resultLable];
-    [self initall];
+//    resultLable=[[UILabel alloc] initWithFrame:CGRectMake(10, (kSCREEN_HEIGHT)-100, kSCREEN_WIDTH-20, 100)];
+//    [self.view addSubview:resultLable];
+    
 }
 
 
@@ -297,37 +298,11 @@
                 break;
                 
             case 1:
-                [resultLable setText:@"就一个人怎么相貌啊，赶紧再添一张照片"];
+                [resultLable setText:@"一个人怎么搞对象嘛"];
                 face1=[result content][@"face"][0];
                 break;
                 
-            case 2:
-                face1=[result content][@"face"][0];
-                face2=[result content][@"face"][1];
-                [resultLable setText:@"疯狂的计算中 客观您稍等"];
-                if (face1!=nil&&face2!=nil) {
-                    FaceppResult *resultcoompare=[[[FaceppRecognition alloc ] init] compareWithFaceId1:[result content][@"face"][0][@"face_id"]  andId2:[result content][@"face"][1][@"face_id"]  async:NO];
-                    NSString *componentstr=[NSString stringWithFormat:@"匹配度是%d",(int )([resultcoompare content][@"similarity"])];
-                    
-                    double maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eye"] doubleValue];
-                    NSString *maxkey=@"眼睛";
-                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"nose"] doubleValue]) {
-                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"nose"] doubleValue];
-                        maxkey=@"鼻子";
-                    }
-                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue]) {
-                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue];
-                        maxkey=@"嘴";
-                    }
-                    if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue]) {
-                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue];
-                        maxkey=@"眼睫毛";
-                    }
-                    
-                    componentstr=[NSString stringWithFormat:@"%@,最像的地方是%@",componentstr,maxkey];
-                    [resultLable setText:componentstr];
-                }
-                break;
+           
                 
             default:
                 face1=[result content][@"face"][0];
@@ -335,7 +310,7 @@
                [resultLable setText:[NSString stringWithFormat:@"相片上总共找到%d个人,只计算前两个哦",[[result content][@"face"] count]]];
                 if (face1!=nil&&face2!=nil) {
                     FaceppResult *resultcoompare=[[[FaceppRecognition alloc ] init] compareWithFaceId1:[result content][@"face"][0][@"face_id"]  andId2:[result content][@"face"][1][@"face_id"]  async:NO];
-                    NSString *componentstr=[NSString stringWithFormat:@"匹配度是%d ",(int)([[resultcoompare content][@"similarity"] doubleValue])];
+                    NSString *componentstr=@"";
                    
                     double maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eye"] doubleValue];
                     NSString *maxkey=@"眼睛";
@@ -352,11 +327,18 @@
                         maxkey=@"眼睫毛";
                     }
                  
-                    componentstr=[NSString stringWithFormat:@"%@,最像的地方是%@",componentstr,maxkey];
+                    componentstr=[NSString stringWithFormat:@"最像的地方是%@",maxkey];
                     [resultLable setText:componentstr];
+//                    [scoreLable dd_setNumber:@(30)];
+                    [scoreLable setText:[NSString stringWithFormat:@"%@",[NSNumber numberWithInt:(int)([[resultcoompare content][@"similarity"] doubleValue])]]];
+                    if ((int)([[resultcoompare content][@"similarity"] doubleValue])>95) {
+                           [resultLable setText:@"不要说你们是双胞胎哦..."];
+                    }
+//                    [scoreLable setText:[NSString stringWithFormat:@"%d",(int)([[resultcoompare content][@"similarity"] doubleValue])]];
                 }
-                
-                break;
+//            case 2:
+//               
+//                break;
         }
         
         
@@ -374,14 +356,16 @@
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
     }
     
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+    [load setHidden:YES];
+    [scoreLable setHidden:NO];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [load setHidden:NO];
+    [scoreLable setHidden:YES];
     UIImage *sourceImage = info[UIImagePickerControllerOriginalImage];
     
     
@@ -435,7 +419,7 @@
         [self.view addSubview:imageViewhTemp];
         [self performSelector:@selector(addmorephoto) withObject:nil afterDelay:0.1f];
     }
-    [resultLable setText:@"计算 计算"];
+    [resultLable setText:@"客观您稍等"];
     UIImage *imageToDetect=imageToDisplay;
     if (firstImage!=nil) {
         imageToDetect=[self addImage:imageToDisplay toImage:firstImage];
@@ -465,6 +449,9 @@
 
 -(void)initall
 {
+    [load setHidden:YES];
+    [scoreLable setHidden:YES];
+     [resultLable setText:@"赶紧选一张照片试试吧"];
     
 }
 -(void)addphoto

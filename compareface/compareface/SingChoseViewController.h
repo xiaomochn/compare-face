@@ -15,11 +15,12 @@
     UIImageView *imageViewSecond;
     UIImageView *imageViewhTemp;
     UIImagePickerController *imagePicker;
-    UILabel *resultLable;
+   IBOutlet UILabel *resultLable;
     NSDictionary *face1;
     NSDictionary *face2;
     UIImage *firstImage;
-
+    __weak IBOutlet UILabel *scoreLable;
+    __weak IBOutlet UIActivityIndicatorView *load;
 }
 
 -(IBAction)pickFromCameraButtonPressed:(id)sender;

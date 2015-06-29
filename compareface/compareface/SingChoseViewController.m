@@ -9,11 +9,11 @@
 #import "SingChoseViewController.h"
 #import "btRippleButtton.h"
 #import "LTBounceSheet.h"
-
+#import <ShareSDK/ShareSDK.h>
 #import "APIKeyAndAPISecret.h"
 #import "PulsingHaloLayer.h"
 #import "UILabel+FlickerNumber.h"
-#define color [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1]
+
 @interface SingChoseViewController ()
 @property(nonatomic,strong) LTBounceSheet *sheet;
 
@@ -43,13 +43,13 @@
     // turn on the debug mode
     [FaceppAPI setDebugMode:TRUE];
     
-    self.sheet = [[LTBounceSheet alloc]initWithHeight:250 bgColor:color];
+    self.sheet = [[LTBounceSheet alloc]initWithHeight:250 bgColor:mainColor];
     
     UIButton * option1 = [self produceButtonWithTitle:@"拍 照"];
     option1.frame=CGRectMake(15, 30, kSCREEN_WIDTH-30, 46);
     [option1 addTarget:self action:@selector(toggleClickCM) forControlEvents:UIControlEventTouchUpInside];
     [self.sheet addView:option1];
-    [self initall];
+    
     UIButton * option2 = [self produceButtonWithTitle:@"从相册选择"];
     option2.frame=CGRectMake(15, 90, kSCREEN_WIDTH-30, 46);
     [option2 addTarget:self action:@selector(toggleClickPT) forControlEvents:UIControlEventTouchUpInside];
@@ -70,11 +70,20 @@
     UIButton * rippleButton=[[UIButton alloc]initWithFrame:CGRectMake((kSCREEN_WIDTH)/2-100, (kSCREEN_HEIGHT)/2-100, 200, 200)];
     [rippleButton addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:rippleButton];
-//    resultLable=[[UILabel alloc] initWithFrame:CGRectMake(10, (kSCREEN_HEIGHT)-100, kSCREEN_WIDTH-20, 100)];
-//    [self.view addSubview:resultLable];
+    //    resultLable=[[UILabel alloc] initWithFrame:CGRectMake(10, (kSCREEN_HEIGHT)-100, kSCREEN_WIDTH-20, 100)];
+    //    [self.view addSubview:resultLable];
+    [self initalla];
+    UIFont *font = [UIFont fontWithName:@"MGentleHKS" size:21];
+    [resultLable setFont:font];
+    font=[UIFont fontWithName:@"MGentleHKS" size:41];
+    [scoreLable setFont:font];
     
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 
 
 -(UIButton *) produceButtonWithTitle:(NSString*) title
@@ -83,9 +92,9 @@
     button.backgroundColor= [UIColor whiteColor];
     button.layer.cornerRadius=23;
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    button.titleLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:16];
+    button.titleLabel.font = [UIFont fontWithName:@"MGentleHKS" size:16];
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:color forState:UIControlStateNormal];
+    [button setTitleColor:mainColor forState:UIControlStateNormal];
     return button;
 }
 
@@ -176,6 +185,70 @@
     }
 }
 
+-(void)removeImageView
+{
+    [UIView animateWithDuration:(1) animations:^{
+        if (imageView!=nil) {
+            CGRect rect= imageView.frame;
+            rect.origin.y=kSCREEN_HEIGHT;
+            imageView.frame=rect;
+        }
+        if (imageViewSecond!=nil) {
+            CGRect rect= imageViewSecond.frame;
+            rect.origin.y=kSCREEN_HEIGHT;
+            imageViewSecond.frame=rect;
+        }
+    } completion:^(BOOL finished) {
+        if (imageView!=nil) {
+            [imageView removeFromSuperview];
+            imageView=nil;
+        }
+        if (imageViewSecond!=nil) {
+            [imageViewSecond removeFromSuperview];
+            imageViewSecond=nil;
+        }
+        
+    }];
+}
+- (IBAction)initall:(id)sender {
+    [self removeImageView];
+    [self initalla];
+}
+
+- (IBAction)sharebtn:(id)sender {
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK" ofType:@"png"];
+    
+    //构造分享内容
+    id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
+                                       defaultContent:@"测试一下"
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:@"ShareSDK"
+                                                  url:@"http://www.mob.com"
+                                          description:@"这是一条测试信息"
+                                            mediaType:SSPublishContentMediaTypeNews];
+    //创建弹出菜单容器
+    id<ISSContainer> container = [ShareSDK container];
+    [container setIPadContainerWithView:sender arrowDirect:UIPopoverArrowDirectionUp];
+    
+    //弹出分享菜单
+    [ShareSDK showShareActionSheet:container
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions:nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    NSLog(NSLocalizedString(@"TEXT_ShARE_SUC", @"分享成功"));
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(NSLocalizedString(@"TEXT_ShARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                                }     }];
+}
+//
 - (UIImage *)fixOrientation:(UIImage *)aImage {
     
     // No-op if the orientation is already correct
@@ -294,7 +367,7 @@
         
         switch ([[result content][@"face"] count]) {
             case 0:
-                 [resultLable setText:@"照片中没找到人，重新传一张试试"];
+                [resultLable setText:@"照片中没找到人，重新传一张试试"];
                 break;
                 
             case 1:
@@ -302,16 +375,16 @@
                 face1=[result content][@"face"][0];
                 break;
                 
-           
+                
                 
             default:
                 face1=[result content][@"face"][0];
                 face2=[result content][@"face"][1];
-               [resultLable setText:[NSString stringWithFormat:@"相片上总共找到%d个人,只计算前两个哦",[[result content][@"face"] count]]];
+                [resultLable setText:[NSString stringWithFormat:@"相片上总共找到%d个人,只计算前两个哦",[[result content][@"face"] count]]];
                 if (face1!=nil&&face2!=nil) {
                     FaceppResult *resultcoompare=[[[FaceppRecognition alloc ] init] compareWithFaceId1:[result content][@"face"][0][@"face_id"]  andId2:[result content][@"face"][1][@"face_id"]  async:NO];
                     NSString *componentstr=@"";
-                   
+                    
                     double maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eye"] doubleValue];
                     NSString *maxkey=@"眼睛";
                     if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"nose"] doubleValue]) {
@@ -319,28 +392,28 @@
                         maxkey=@"鼻子";
                     }
                     if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue]) {
-                         maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue];
+                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"mouth"] doubleValue];
                         maxkey=@"嘴";
                     }
                     if (maxscore<[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue]) {
-                         maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue];
+                        maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue];
                         maxkey=@"眼睫毛";
                     }
-                 
+                    
                     componentstr=[NSString stringWithFormat:@"最像的地方是%@",maxkey];
                     [resultLable setText:componentstr];
-//                    [scoreLable dd_setNumber:@(30)];
+                    //                    [scoreLable dd_setNumber:@(30)];
                     [scoreLable setText:[NSString stringWithFormat:@"%@",[NSNumber numberWithInt:(int)([[resultcoompare content][@"similarity"] doubleValue])]]];
                     if ((int)([[resultcoompare content][@"similarity"] doubleValue])>95) {
-                           [resultLable setText:@"不要说你们是双胞胎哦..."];
+                        [resultLable setText:@"不要说你们是双胞胎哦..."];
                     }
-//                    [scoreLable setText:[NSString stringWithFormat:@"%d",(int)([[resultcoompare content][@"similarity"] doubleValue])]];
+                     [scoreLable setHidden:NO];
+                  
                 }
-//            case 2:
-//               
-//                break;
+                //            case 2:
+                //
+                //                break;
         }
-        
         
         
         //        FaceppResult *resulu= [[[FaceppRecognition alloc] init] searchWithKeyFaceId:[result content][@"face"][0][@"face_id"] andFacesetId:nil orFacesetName:@"starlib3" andCount:nil async:NO];
@@ -356,15 +429,16 @@
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
     }
     
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-    [load setHidden:YES];
-    [scoreLable setHidden:NO];
+   
+    [load stopAnimating];
+
+    //    [MBProgressHUD hideHUDForView:self.view animated:YES];
+  
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [load setHidden:NO];
+    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [load startAnimating];
     [scoreLable setHidden:YES];
     UIImage *sourceImage = info[UIImagePickerControllerOriginalImage];
     
@@ -431,7 +505,7 @@
 }
 
 - (UIImage *)addImage:(UIImage *)image2 toImage:(UIImage *)image1 {
-  
+    
     UIGraphicsBeginImageContext(CGSizeMake(image1.size.width+image2.size.width, MAX(image1.size.height, image2.size.height)));
     
     // Draw image1
@@ -445,13 +519,18 @@
     UIGraphicsEndImageContext();
     
     return resultingImage;
-}  
+}
 
--(void)initall
+-(void)initalla
 {
-    [load setHidden:YES];
+    
+    [load stopAnimating];
     [scoreLable setHidden:YES];
-     [resultLable setText:@"赶紧选一张照片试试吧"];
+    firstImage=nil;
+    [UIView animateWithDuration:1 animations:^{
+        [resultLable setText:@"赶紧选一张照片试试吧"];
+    }];
+    
     
 }
 -(void)addphoto

@@ -5,7 +5,7 @@
 
 #import "MBProgressHUD.h"
 
-@interface DoubleChoseViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface DoubleChoseViewController : UIViewController {
     IBOutlet UIImageView *imageView;
     
     UIImagePickerController *imagePicker;

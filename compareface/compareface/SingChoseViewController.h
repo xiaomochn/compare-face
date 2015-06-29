@@ -25,6 +25,8 @@
 
 -(IBAction)pickFromCameraButtonPressed:(id)sender;
 -(IBAction)pickFromLibraryButtonPressed:(id)sender;
+- (IBAction)initall:(id)sender;
+- (IBAction)sharebtn:(id)sender;
 
 -(void) detectWithImage: (UIImage*) image;
 @end

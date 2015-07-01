@@ -13,8 +13,8 @@
 #import "APIKeyAndAPISecret.h"
 #import "PulsingHaloLayer.h"
 #import "UILabel+FlickerNumber.h"
-
-@interface SingChoseViewController ()
+#import "PECropViewController.h"
+@interface SingChoseViewController ()<PECropViewControllerDelegate>
 @property(nonatomic,strong) LTBounceSheet *sheet;
 
 @end
@@ -214,16 +214,28 @@
     [self removeImageView];
     [self initalla];
 }
-
+#pragma  截屏
+- (UIImage *)imageFromView: (UIView *) theView   atFrame:(CGRect)r
+{
+    UIGraphicsBeginImageContext(theView.frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    UIRectClip(r);
+    [theView.layer renderInContext:context];
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return  theImage;//[self getImageAreaFromImage:theImage atFrame:r];
+}
 - (IBAction)sharebtn:(id)sender {
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK" ofType:@"png"];
-    
+    UIImage *image=[self imageFromView:self.view atFrame:CGRectMake(0, 100, kSCREEN_WIDTH, kSCREEN_HEIGHT-100)];
     //构造分享内容
     id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
-                                       defaultContent:@"测试一下"
-                                                image:[ShareSDK imageWithPath:imagePath]
+                                       defaultContent:@"夫妻相"
+                                                image:image
                                                 title:@"ShareSDK"
-                                                  url:@"http://www.mob.com"
+                                                  url:@"www.baidu.ocm"
                                           description:@"这是一条测试信息"
                                             mediaType:SSPublishContentMediaTypeNews];
     //创建弹出菜单容器
@@ -437,7 +449,18 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+      [picker dismissModalViewControllerAnimated:YES];
+    PECropViewController *controller = [[PECropViewController alloc] init];
+    controller.delegate = self;
+    controller.image = info[UIImagePickerControllerOriginalImage];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navigationController animated:YES completion:NULL];
+  
+    if (YES) {
+        return;
+    }
+   
     [load startAnimating];
     [scoreLable setHidden:YES];
     UIImage *sourceImage = info[UIImagePickerControllerOriginalImage];
@@ -450,7 +473,7 @@
     
     //    [imageView setImage:sourceImage];
     // perform detection in background thread
-    [picker dismissModalViewControllerAnimated:YES];
+    
     if (imageView==nil) {
         imageView=[[UIImageView alloc] initWithImage:imageToDisplay];
         [imageView setFrame:CGRectMake(kSCREEN_WIDTH/2-imageToDisplay.size.width * scale/2,
@@ -550,27 +573,7 @@
 }
 -(void)addmorephoto
 {
-    //    [UIView animateWithDuration:1 animations:^{
-    ////        CGRect rect=imageView.frame;
-    ////        rect.size.height=rect.size.height/2;
-    ////        rect.size.width=rect.size.width/2;
-    ////        rect.origin.y=kSCREEN_HEIGHT/2-rect.size.height/2;
-    ////        imageView.frame=rect;
-    ////        CGRect rectsecond=imageViewSecond.frame;
-    ////        rectsecond.origin.x=kSCREEN_WIDTH/2;
-    ////        imageViewSecond.frame=rectsecond;
-    //        //            [self.view addSubview:imageViewSecond];
-    //        [imageView removeFromSuperview];
-    //        imageView=imageViewSecond;
-    //        CGRect rect=imageView.frame;
-    //        rect.origin.x=kSCREEN_WIDTH/2-rect.size.width;
-    //        imageView.frame=rect;
-    //        imageViewSecond=imageViewhTemp;
-    //        CGRect rectsecond=imageViewSecond.frame;
-    //        rectsecond.origin.x=kSCREEN_WIDTH/2;
-    //        imageViewSecond.frame=rectsecond;
-    //
-    //    }];
+    
     [UIView animateWithDuration:1 animations:^{
         UIImageView *temp=imageView;
         
@@ -595,6 +598,80 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissModalViewControllerAnimated:YES];
 }
+
+// callback when cropping finished
+
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
+{
+    [controller dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [load startAnimating];
+    [scoreLable setHidden:YES];
+    UIImage *sourceImage = croppedImage;
+    
+    
+    UIImage *imageToDisplay = [self fixOrientation:sourceImage];
+    float scale = 1.0f;
+    scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
+    scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
+    
+    //    [imageView setImage:sourceImage];
+    // perform detection in background thread
+    
+    if (imageView==nil) {
+        imageView=[[UIImageView alloc] initWithImage:imageToDisplay];
+        [imageView setFrame:CGRectMake(kSCREEN_WIDTH/2-imageToDisplay.size.width * scale/2,
+                                       kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
+                                       imageToDisplay.size.width * scale,
+                                       imageToDisplay.size.height * scale)];
+        imageView.userInteractionEnabled=true;
+        [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
+        [self.view addSubview:imageView];
+    }else if(imageViewSecond==nil)
+    {
+        float scale = 1.0f;
+        scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
+        scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
+        scale=scale/2;
+        
+        imageViewSecond=[[UIImageView alloc] initWithImage:imageToDisplay];
+        [imageViewSecond setFrame:CGRectMake(kSCREEN_WIDTH,
+                                             kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
+                                             imageToDisplay.size.width * scale,
+                                             imageToDisplay.size.height * scale)];
+        imageViewSecond.userInteractionEnabled=true;
+        [imageViewSecond addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
+        [self.view addSubview:imageViewSecond];
+        [self performSelector:@selector(addphoto) withObject:nil afterDelay:0.1f];
+    }else
+    {
+        float scale = 1.0f;
+        scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
+        scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
+        scale=scale/2;
+        
+        imageViewhTemp=[[UIImageView alloc] initWithImage:imageToDisplay];
+        [imageViewhTemp setFrame:CGRectMake(kSCREEN_WIDTH,
+                                            kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
+                                            imageToDisplay.size.width * scale,
+                                            imageToDisplay.size.height * scale)];
+        imageViewhTemp.userInteractionEnabled=true;
+        [imageViewhTemp addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
+        [self.view addSubview:imageViewhTemp];
+        [self performSelector:@selector(addmorephoto) withObject:nil afterDelay:0.1f];
+    }
+    [resultLable setText:@"客观您稍等"];
+    UIImage *imageToDetect=imageToDisplay;
+    if (firstImage!=nil) {
+        imageToDetect=[self addImage:imageToDisplay toImage:firstImage];
+        
+    }
+    firstImage=imageToDisplay;
+    [self performSelectorInBackground:@selector(detectWithImage:) withObject:imageToDetect ];
+
+}
+
 
 
 @end

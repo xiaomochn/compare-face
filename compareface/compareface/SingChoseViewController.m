@@ -16,7 +16,7 @@
 #import "PECropViewController.h"
 @interface SingChoseViewController ()<PECropViewControllerDelegate>
 @property(nonatomic,strong) LTBounceSheet *sheet;
-
+@property int score;
 @end
 @implementation SingChoseViewController
 
@@ -224,19 +224,30 @@
     [theView.layer renderInContext:context];
     UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+ 
     return  theImage;//[self getImageAreaFromImage:theImage atFrame:r];
 }
+
 - (IBAction)sharebtn:(id)sender {
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK" ofType:@"png"];
-    UIImage *image=[self imageFromView:self.view atFrame:CGRectMake(0, 100, kSCREEN_WIDTH, kSCREEN_HEIGHT-100)];
+//    UIImage *image=[self imageFromView:self.view atFrame:CGRectMake(0, 100, kSCREEN_WIDTH, kSCREEN_HEIGHT-100)];
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
+    UIView * theView = self.view  ;
+    CGRect r=CGRectMake(0, 100, kSCREEN_WIDTH, kSCREEN_HEIGHT-100);
+
+    UIGraphicsBeginImageContext(theView.frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    UIRectClip(r);
+    [theView.layer renderInContext:context];
+   firstImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"夫妻相权威认证，我们的夫妻相匹配指数为%d",_score]
                                        defaultContent:@"夫妻相"
-                                                image:image
-                                                title:@"ShareSDK"
-                                                  url:@"www.baidu.ocm"
-                                          description:@"这是一条测试信息"
+                                                image:[ShareSDK pngImageWithImage:firstImage]
+                                                title:@"夫妻相"
+                                                  url:@"https://itunes.apple.com/us/app/fu-qi-xiang-biao-bai-shen-qi/id1015265049?l=zh&ls=1&mt=8"
+                                          description:[NSString stringWithFormat:@"夫妻相权威认证，我们的夫妻相匹配指数为%d",_score]
                                             mediaType:SSPublishContentMediaTypeNews];
     //创建弹出菜单容器
     id<ISSContainer> container = [ShareSDK container];
@@ -341,16 +352,16 @@
 -(void) detectWithImage: (UIImage*) image {
     //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    FaceppResult *result = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(image, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeNone];
+    FaceppResult *result = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(image, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeAll];
     if (result.success) {
         double image_width = [[result content][@"img_width"] doubleValue] *0.01f;
         double image_height = [[result content][@"img_height"] doubleValue] * 0.01f;
-        
-        UIGraphicsBeginImageContext(image.size);
-        [image drawAtPoint:CGPointZero];
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetRGBFillColor(context, 0, 0, 1.0, 1.0);
-        CGContextSetLineWidth(context, image_width * 0.7f);
+//        
+//        UIGraphicsBeginImageContext(image.size);
+//        [image drawAtPoint:CGPointZero];
+//        CGContextRef context = UIGraphicsGetCurrentContext();
+//        CGContextSetRGBFillColor(context, 0, 0, 1.0, 1.0);
+//        CGContextSetLineWidth(context, image_width * 0.7f);
         
         // draw rectangle in the image
         int face_count = [[result content][@"face"] count];
@@ -364,8 +375,8 @@
         //            CGContextStrokeRect(context, rect);
         //        }
         
-        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+//        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
         //        float scale = 1.0f;
         //        scale = MIN(scale, 280.0f/image.size.width);
         //        scale = MIN(scale, 257.0f/image.size.height);
@@ -383,8 +394,7 @@
                 break;
                 
             case 1:
-                [resultLable setText:@"一个人怎么搞对象嘛"];
-                face1=[result content][@"face"][0];
+                [resultLable setText:@"一个人怎么测配对指数"];
                 break;
                 
                 
@@ -411,11 +421,23 @@
                         maxscore=[[[resultcoompare content][@"component_similarity"] objectForKey:@"eyebrow"] doubleValue];
                         maxkey=@"眼睫毛";
                     }
-                    
-                    componentstr=[NSString stringWithFormat:@"最像的地方是%@",maxkey];
+                      componentstr=[NSString stringWithFormat:@"你们看起来最像的地方是%@",maxkey];
+                     _score=[self getScoreWithTrueScore:(int)([[resultcoompare content][@"similarity"] doubleValue])];
+
+                    if([face1[@"attribute"][@"gender"][@"value"] isEqual:face2[@"attribute"][@"gender"][@"value"]]){
+                        if ([face1[@"attribute"][@"gender"][@"value"] isEqual:@"Female"]) {
+                            componentstr =[componentstr stringByAppendingString:@"，不过俩妹子是要闹哪样"];
+                        }else {
+                            componentstr =[componentstr stringByAppendingString:@"，不过搞基可不好哦"];
+                            
+                        }
+                        _score-=50;
+                    }
+                  
                     [resultLable setText:componentstr];
                     //                    [scoreLable dd_setNumber:@(30)];
-                    [scoreLable setText:[NSString stringWithFormat:@"%@",[NSNumber numberWithInt:(int)([[resultcoompare content][@"similarity"] doubleValue])]]];
+                    
+                                     [scoreLable setText:[NSString stringWithFormat:@"%@",[NSNumber numberWithInt:_score]]];
                     if ((int)([[resultcoompare content][@"similarity"] doubleValue])>95) {
                         [resultLable setText:@"不要说你们是双胞胎哦..."];
                     }
@@ -446,6 +468,10 @@
 
     //    [MBProgressHUD hideHUDForView:self.view animated:YES];
   
+}
+-(int ) getScoreWithTrueScore:(int )score
+{
+    return score*0.5+50;;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -516,7 +542,7 @@
         [self.view addSubview:imageViewhTemp];
         [self performSelector:@selector(addmorephoto) withObject:nil afterDelay:0.1f];
     }
-    [resultLable setText:@"客观您稍等"];
+    [resultLable setText:@"客官您稍等"];
     UIImage *imageToDetect=imageToDisplay;
     if (firstImage!=nil) {
         imageToDetect=[self addImage:imageToDisplay toImage:firstImage];
@@ -600,7 +626,9 @@
 }
 
 // callback when cropping finished
-
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller{
+     [controller dismissModalViewControllerAnimated:YES];
+}
 - (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
 {
     [controller dismissViewControllerAnimated:YES completion:^{

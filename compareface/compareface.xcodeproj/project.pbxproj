@@ -51,6 +51,7 @@
 		16E2C42F1B21941900482E5E /* SingChoseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C42E1B21941900482E5E /* SingChoseViewController.m */; };
 		16E2C4321B2194AE00482E5E /* DoubleChoseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C4311B2194AE00482E5E /* DoubleChoseViewController.m */; };
 		16E2C4351B21988100482E5E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C4341B21988100482E5E /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		16F6BAD81B44DE24005D6369 /* scoreresult.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16F6BAD71B44DE24005D6369 /* scoreresult.plist */; };
 		5AE1FD2723841A8180C98524 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D17E618A64F42605C44BCF8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		16E2C4331B21988100482E5E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = ../../Demos/FaceppPhotoPickerDemo/MBProgressHUD.h; sourceTree = "<group>"; };
 		16E2C4341B21988100482E5E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = ../../Demos/FaceppPhotoPickerDemo/MBProgressHUD.m; sourceTree = "<group>"; };
 		16E2C4361B2198B200482E5E /* APIKeyAndAPISecret.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIKeyAndAPISecret.h; path = ../../Demos/APIKeyAndAPISecret.h; sourceTree = "<group>"; };
+		16F6BAD71B44DE24005D6369 /* scoreresult.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scoreresult.plist; sourceTree = "<group>"; };
 		2D17E618A64F42605C44BCF8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC528C84B6512865798A9098 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F720F4E4C96B65C1DE3D17D2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				16505D201B2FD48000047AB9 /* MGentleHKS-Light.otf */,
 				16E2C3A31B218F0500482E5E /* Info.plist */,
 				16E2C3A41B218F0500482E5E /* main.m */,
+				16F6BAD71B44DE24005D6369 /* scoreresult.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 			files = (
 				16505D011B2FC15800047AB9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				16E2C3AE1B218F0500482E5E /* Main.storyboard in Resources */,
+				16F6BAD81B44DE24005D6369 /* scoreresult.plist in Resources */,
 				16E2C3B31B218F0500482E5E /* LaunchScreen.xib in Resources */,
 				16505CFD1B2FC15800047AB9 /* ShareSDKLocalizable.strings in Resources */,
 				16505D031B2FC15800047AB9 /* WeiboSDK.bundle in Resources */,
@@ -644,6 +648,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "夫妻相";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 x86_64 armv7s armv7";
 			};
 			name = Debug;
@@ -671,6 +676,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "夫妻相";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 			};
 			name = Release;

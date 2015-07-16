@@ -11,7 +11,7 @@
 
 
 #import "APIKeyAndAPISecret.h"
-
+#import "MobClick.h"
 @implementation DoubleChoseViewController
 
 - (void)viewDidLoad
@@ -22,6 +22,18 @@
 
    
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"PageTwo"];
+    
+}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [MobClick endLogPageView:@"PageTwo"];
+}
+
 -(void)addmessage
 {
     UIFont *font = [UIFont fontWithName:@"MGentleHKS" size:21];

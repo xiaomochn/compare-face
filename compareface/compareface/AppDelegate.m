@@ -13,7 +13,7 @@
 #import "WXApi.h"
 #import "WeiboApi.h"
 #import "WeiboSDK.h"
-
+#import <MobClick.h>
 @interface AppDelegate ()
 
 @end
@@ -52,6 +52,7 @@
                                   weiboSDKCls:[WeiboSDK class]];
      
     }
+    [MobClick startWithAppkey:@"55933f3867e58e3e5000408a" reportPolicy:BATCH   channelId:nil];
         return YES;
 }
 

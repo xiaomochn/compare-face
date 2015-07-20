@@ -71,6 +71,34 @@
       "idiom" : "ipad",
       "filename" : "152-1.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "57-1.png",
+      "unassigned" : true,
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "57.png",
+      "unassigned" : true,
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "76.png",
+      "unassigned" : true,
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "152-1.png",
+      "unassigned" : true,
+      "scale" : "2x"
     }
   ],
   "info" : {

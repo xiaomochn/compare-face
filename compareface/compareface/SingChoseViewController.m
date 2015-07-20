@@ -233,6 +233,7 @@
             [imageViewSecond removeFromSuperview];
             imageViewSecond=nil;
         }
+      
         
     }];
 }

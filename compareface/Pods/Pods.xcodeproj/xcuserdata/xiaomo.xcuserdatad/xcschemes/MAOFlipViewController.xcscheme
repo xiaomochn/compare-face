@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '39B5CD6C048C019E910FC1D0'
+               BlueprintIdentifier = 'EBD965FB42B94831B330FDBF'
                BlueprintName = 'MAOFlipViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMAOFlipViewController.a'>
+               BuildableName = 'MAOFlipViewController.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

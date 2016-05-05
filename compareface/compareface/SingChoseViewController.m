@@ -15,8 +15,9 @@
 #import "UILabel+FlickerNumber.h"
 #import "PECropViewController.h"
 #import "MobClick.h"
+#import "夫妻相-Swift.h"
 @interface SingChoseViewController ()<PECropViewControllerDelegate>
-@property(nonatomic,strong) LTBounceSheet *sheet;
+//@property(nonatomic,strong) LTBounceSheet *sheet;
 @property(nonatomic,strong) NSMutableArray *scoredetil ;
 @property int score;
 @end
@@ -33,37 +34,28 @@
     NSString *API_SECRET = @"pxyJuPZXukNG4JGPllXqooYaOOna4rIv";
     [FaceppAPI initWithApiKey:API_KEY andApiSecret:API_SECRET andRegion:APIServerRegionCN];
     
-    //    BTRippleButtton *rippleButton = [[BTRippleButtton alloc]initWithImage:[UIImage imageNamed:@"maincolor.png"]
-    //                                                                 andFrame:CGRectMake((kSCREEN_WIDTH)/2-50, (kSCREEN_HEIGHT)/2, 100, 100)
-    //                                                                andTarget:@selector(toggle)
-    //                                                                    andID:self];
-    //
-    //    [rippleButton setRippeEffectEnabled:YES];
-    //    [rippleButton setRippleEffectWithColor:kMAIN_COLOOR];
-    //
-    //    [self.view addSubview:rippleButton];
-    // turn on the debug mode
-    [FaceppAPI setDebugMode:TRUE];
+
+//    [FaceppAPI setDebugMode:TRUE];
+//    
+//    self.sheet = [[LTBounceSheet alloc]initWithHeight:250 bgColor:mainColor];
+//    
+//    UIButton * option1 = [self produceButtonWithTitle:@"拍 照"];
+//    option1.frame=CGRectMake(15, 30, kSCREEN_WIDTH-30, 46);
+//    [option1 addTarget:self action:@selector(toggleClickCM) forControlEvents:UIControlEventTouchUpInside];
+//    [self.sheet addView:option1];
+//    
+//    UIButton * option2 = [self produceButtonWithTitle:@"从相册选择"];
+//    option2.frame=CGRectMake(15, 90, kSCREEN_WIDTH-30, 46);
+//    [option2 addTarget:self action:@selector(toggleClickPT) forControlEvents:UIControlEventTouchUpInside];
+//    [self.sheet addView:option2];
+//    
+//    UIButton * cancel = [self produceButtonWithTitle:@"取消"];
+//    cancel.frame=CGRectMake(15, 170, kSCREEN_WIDTH-30, 46);
+//    [cancel addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [self.sheet addView:cancel];
     
-    self.sheet = [[LTBounceSheet alloc]initWithHeight:250 bgColor:mainColor];
-    
-    UIButton * option1 = [self produceButtonWithTitle:@"拍 照"];
-    option1.frame=CGRectMake(15, 30, kSCREEN_WIDTH-30, 46);
-    [option1 addTarget:self action:@selector(toggleClickCM) forControlEvents:UIControlEventTouchUpInside];
-    [self.sheet addView:option1];
-    
-    UIButton * option2 = [self produceButtonWithTitle:@"从相册选择"];
-    option2.frame=CGRectMake(15, 90, kSCREEN_WIDTH-30, 46);
-    [option2 addTarget:self action:@selector(toggleClickPT) forControlEvents:UIControlEventTouchUpInside];
-    [self.sheet addView:option2];
-    
-    UIButton * cancel = [self produceButtonWithTitle:@"取消"];
-    cancel.frame=CGRectMake(15, 170, kSCREEN_WIDTH-30, 46);
-    [cancel addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.sheet addView:cancel];
-    
-    [[[UIApplication sharedApplication] keyWindow] addSubview:self.sheet];
+//    [[[UIApplication sharedApplication] keyWindow] addSubview:self.sheet];
     PulsingHaloLayer *halo = [PulsingHaloLayer layer];
     
     halo.position = self.view.center;
@@ -115,58 +107,14 @@
     [MobClick endLogPageView:@"PageOne"];
 }
 
--(UIButton *) produceButtonWithTitle:(NSString*) title
-{
-    UIButton * button =[UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor= [UIColor whiteColor];
-    button.layer.cornerRadius=23;
-    button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    button.titleLabel.font = [UIFont fontWithName:@"MGentleHKS" size:16];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:mainColor forState:UIControlStateNormal];
-    return button;
-}
 
 
 
-- (IBAction)toggleClickCM {
-    [self.sheet toggle];
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentModalViewController:imagePicker animated:YES];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"failed to camera"
-                              message:@""
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-        
-    }
-}
-- (IBAction)toggleClickPT {
-    [self.sheet toggle];
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
-    {
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentModalViewController:imagePicker animated:YES];
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"failed to access photo library"
-                              message:@""
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-        
-    }
-}
 - (IBAction)toggle {
-    [self.sheet toggle];
+    [[[XMImagePIcker alloc] init] presentImagePickerSheet:self completeHandler:^(UIImage * image) {
+        [self cropViewController:nil didFinishCroppingImage:image];
+    }];
+//    [self.sheet toggle];
 }
 
 - (void)didReceiveMemoryWarning
@@ -175,41 +123,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)pickFromCameraButtonPressed:(id)sender {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentModalViewController:imagePicker animated:YES];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"failed to camera"
-                              message:@""
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-        
-    }
-}
 
--(IBAction)pickFromLibraryButtonPressed:(id)sender {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
-    {
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentModalViewController:imagePicker animated:YES];
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"failed to access photo library"
-                              message:@""
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-        
-    }
-}
+
 
 -(void)removeImageView
 {
@@ -465,84 +380,7 @@
     return score*0.5+50;;
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-      [picker dismissModalViewControllerAnimated:YES];
-    PECropViewController *controller = [[PECropViewController alloc] init];
-    controller.delegate = self;
-    controller.image = info[UIImagePickerControllerOriginalImage];
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self presentViewController:navigationController animated:YES completion:NULL];
-  
-    if (YES) {
-        return;
-    }
-   
-    [load startAnimating];
-    [scoreLable setHidden:YES];
-    UIImage *sourceImage = info[UIImagePickerControllerOriginalImage];
-    
-    
-    UIImage *imageToDisplay = [self fixOrientation:sourceImage];
-    float scale = 1.0f;
-    scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
-    scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
-    
-    //    [imageView setImage:sourceImage];
-    // perform detection in background thread
-    
-    if (imageView==nil) {
-        imageView=[[UIImageView alloc] initWithImage:imageToDisplay];
-        [imageView setFrame:CGRectMake(kSCREEN_WIDTH/2-imageToDisplay.size.width * scale/2,
-                                       kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
-                                       imageToDisplay.size.width * scale,
-                                       imageToDisplay.size.height * scale)];
-        imageView.userInteractionEnabled=true;
-        [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
-        [self.view addSubview:imageView];
-    }else if(imageViewSecond==nil)
-    {
-        float scale = 1.0f;
-        scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
-        scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
-        scale=scale/2;
-        
-        imageViewSecond=[[UIImageView alloc] initWithImage:imageToDisplay];
-        [imageViewSecond setFrame:CGRectMake(kSCREEN_WIDTH,
-                                             kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
-                                             imageToDisplay.size.width * scale,
-                                             imageToDisplay.size.height * scale)];
-        imageViewSecond.userInteractionEnabled=true;
-        [imageViewSecond addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
-        [self.view addSubview:imageViewSecond];
-        [self performSelector:@selector(addphoto) withObject:nil afterDelay:0.1f];
-    }else
-    {
-        float scale = 1.0f;
-        scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
-        scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
-        scale=scale/2;
-        
-        imageViewhTemp=[[UIImageView alloc] initWithImage:imageToDisplay];
-        [imageViewhTemp setFrame:CGRectMake(kSCREEN_WIDTH,
-                                            kSCREEN_HEIGHT/2-imageToDisplay.size.height * scale/2,
-                                            imageToDisplay.size.width * scale,
-                                            imageToDisplay.size.height * scale)];
-        imageViewhTemp.userInteractionEnabled=true;
-        [imageViewhTemp addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggle)]];
-        [self.view addSubview:imageViewhTemp];
-        [self performSelector:@selector(addmorephoto) withObject:nil afterDelay:0.1f];
-    }
-    [resultLable setText:@"客官您稍等"];
-    UIImage *imageToDetect=imageToDisplay;
-    if (firstImage!=nil) {
-        imageToDetect=[self addImage:imageToDisplay toImage:firstImage];
-        
-    }
-    firstImage=imageToDisplay;
-    [self performSelectorInBackground:@selector(detectWithImage:) withObject:imageToDetect ];
-    
-}
+
 
 - (UIImage *)addImage:(UIImage *)image2 toImage:(UIImage *)image1 {
     
@@ -622,9 +460,9 @@
 }
 - (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
 {
-    [controller dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+//    [controller dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
     [load startAnimating];
     [scoreLable setHidden:YES];
     UIImage *sourceImage = croppedImage;

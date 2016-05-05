@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DA4254047F0C5F89FD4355EA'
+               BlueprintIdentifier = '8FF81D2C6308BFD84D09DF79'
                BlueprintName = 'PEPhotoCropEditor'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPEPhotoCropEditor.a'>
+               BuildableName = 'PEPhotoCropEditor.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

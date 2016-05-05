@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DGElasticPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FaceppSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -14,12 +24,47 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ImagePickerSheetController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MAOFlipViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Material-io.cosmicmind.material.fonts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Material-io.cosmicmind.material.icons.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Material.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PEPhotoCropEditor.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PagingMenuController-PagingMenuController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PagingMenuController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,35 +79,130 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SBJson.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SKPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>UIActivityIndicator-for-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8E4DAB29FE2F84000399DD9945B88AB2</key>
+		<key>0B45F3FD9973A53C98D2C17B7A7B121D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99C47143B92D2E3D425C20EDFEDE23CC</key>
+		<key>115824B7CB2E76E5ACB836A251E79404</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA1B496CAB5EE6CD18036A7F0903E82F</key>
+		<key>1CA9E4CA9AC0ACFF8FC138AFD901ADEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D9EF93205E9EF8994815B758ADE531BB</key>
+		<key>23D4B5C9CC657B68134305BFEB076270</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FBF0F10434478B0F773BDA817F7BF495</key>
+		<key>2AAAB9973850C35994DC04473435E1A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FCF659E476DCCC162D3A3F67933A9322</key>
+		<key>2B3B19EE97A2A4F267B20A3FD49E8420</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>45035D12DD22E8375D68338DBC902053</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5BBB34170986C897E8931C1768FD6EE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5CF139B7D6298D56C0BB5770372D711F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6847254D016329D4A531D34ED2B6DF81</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6F20E324D863E55247117AA1745DDAEC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9309E111B80C2E7A291D96F4DE48DE22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD7F588C36705C4D4AF3930C05066179</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4FF14EC9E7A04BDF05B4CFE1F7D8F79</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9EDD512897E0F5266D881FD9890B5FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDACBEA94CFEE223C9A0D9A9BF1B97B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D689C9E202F3806BEE991D4789359B03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4B21313E757D7CB9CD9249E4FD86381</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F2F0FA7C8F07505D18A2DF1013076024</key>
 		<dict>
 			<key>primary</key>
 			<true/>

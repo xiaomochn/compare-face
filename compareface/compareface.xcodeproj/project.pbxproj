@@ -50,7 +50,15 @@
 		16E2C42F1B21941900482E5E /* SingChoseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C42E1B21941900482E5E /* SingChoseViewController.m */; };
 		16E2C4321B2194AE00482E5E /* DoubleChoseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C4311B2194AE00482E5E /* DoubleChoseViewController.m */; };
 		16E2C4351B21988100482E5E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2C4341B21988100482E5E /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5AE1FD2723841A8180C98524 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D17E618A64F42605C44BCF8 /* libPods.a */; };
+		39675850039A86C756B2DB91 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E9653ACB9A736BEF662DB /* Pods.framework */; };
+		CD89C7C31CDADCAE00D535C3 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89C7C01CDADCAE00D535C3 /* ResultCell.swift */; };
+		CD89C7C41CDADCAE00D535C3 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89C7C11CDADCAE00D535C3 /* ResultVC.swift */; };
+		CD89C7C51CDADCAE00D535C3 /* IamStarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89C7C21CDADCAE00D535C3 /* IamStarViewController.swift */; };
+		CD89C7C91CDADCB800D535C3 /* FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD89C7C71CDADCB800D535C3 /* FixOrientation.m */; };
+		CD89C7CA1CDADCB800D535C3 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89C7C81CDADCB800D535C3 /* GlobalVariables.swift */; };
+		CD89C7CC1CDADCBF00D535C3 /* facehead.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD89C7CB1CDADCBF00D535C3 /* facehead.jpg */; };
+		CD89C7D31CDB2CB400D535C3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89C7D21CDB2CB400D535C3 /* HomeVC.swift */; };
+		CD89C7D71CDB383B00D535C3 /* XMImagePIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89C7D61CDB383B00D535C3 /* XMImagePIcker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,7 +125,17 @@
 		16E2C4341B21988100482E5E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = ../../Demos/FaceppPhotoPickerDemo/MBProgressHUD.m; sourceTree = "<group>"; };
 		16E2C4361B2198B200482E5E /* APIKeyAndAPISecret.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIKeyAndAPISecret.h; path = ../../Demos/APIKeyAndAPISecret.h; sourceTree = "<group>"; };
 		16F6BAD71B44DE24005D6369 /* scoreresult.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scoreresult.plist; sourceTree = "<group>"; };
-		2D17E618A64F42605C44BCF8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A8E9653ACB9A736BEF662DB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD89C7BC1CDADA8B00D535C3 /* compareface-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "compareface-Bridging-Header.h"; sourceTree = "<group>"; };
+		CD89C7C01CDADCAE00D535C3 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
+		CD89C7C11CDADCAE00D535C3 /* ResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
+		CD89C7C21CDADCAE00D535C3 /* IamStarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IamStarViewController.swift; sourceTree = "<group>"; };
+		CD89C7C61CDADCB800D535C3 /* FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixOrientation.h; sourceTree = "<group>"; };
+		CD89C7C71CDADCB800D535C3 /* FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixOrientation.m; sourceTree = "<group>"; };
+		CD89C7C81CDADCB800D535C3 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		CD89C7CB1CDADCBF00D535C3 /* facehead.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = facehead.jpg; sourceTree = "<group>"; };
+		CD89C7D21CDB2CB400D535C3 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		CD89C7D61CDB383B00D535C3 /* XMImagePIcker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMImagePIcker.swift; sourceTree = "<group>"; };
 		DC528C84B6512865798A9098 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F720F4E4C96B65C1DE3D17D2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,7 +163,6 @@
 				16505CF71B2FC15800047AB9 /* QQConnection.framework in Frameworks */,
 				16505D081B2FC15800047AB9 /* ShareSDKFlatShareViewUI.framework in Frameworks */,
 				16505D091B2FC15800047AB9 /* ShareSDKShareActionSheet.framework in Frameworks */,
-				5AE1FD2723841A8180C98524 /* libPods.a in Frameworks */,
 				16505D061B2FC15800047AB9 /* ShareSDK.framework in Frameworks */,
 				16505CFC1B2FC15800047AB9 /* AGCommon.framework in Frameworks */,
 				16505D021B2FC15800047AB9 /* libWeiboSDK.a in Frameworks */,
@@ -153,6 +170,7 @@
 				16505CFA1B2FC15800047AB9 /* TencentWeiboConnection.framework in Frameworks */,
 				16505CF91B2FC15800047AB9 /* SinaWeiboConnection.framework in Frameworks */,
 				16505CF81B2FC15800047AB9 /* QZoneConnection.framework in Frameworks */,
+				39675850039A86C756B2DB91 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +312,7 @@
 		16E2C3A11B218F0500482E5E /* compareface */ = {
 			isa = PBXGroup;
 			children = (
+				CD89C7BB1CDADA6500D535C3 /* xiaomo */,
 				16505CD41B2FC15800047AB9 /* ShareSDK */,
 				16D04B451B254401009BE577 /* LTBounceSheet */,
 				16D04B401B253DCB009BE577 /* btRippleButton */,
@@ -306,6 +325,7 @@
 				16E2C3AA1B218F0500482E5E /* ViewController.m */,
 				16E2C3AC1B218F0500482E5E /* Main.storyboard */,
 				16E2C3AF1B218F0500482E5E /* Images.xcassets */,
+				CD89C7CB1CDADCBF00D535C3 /* facehead.jpg */,
 				16E2C3B11B218F0500482E5E /* LaunchScreen.xib */,
 				16E2C3A21B218F0500482E5E /* Supporting Files */,
 			);
@@ -363,6 +383,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CD89C7BB1CDADA6500D535C3 /* xiaomo */ = {
+			isa = PBXGroup;
+			children = (
+				CD89C7D61CDB383B00D535C3 /* XMImagePIcker.swift */,
+				CD89C7BF1CDADC8200D535C3 /* IAmStar */,
+				CD89C7BC1CDADA8B00D535C3 /* compareface-Bridging-Header.h */,
+				CD89C7D21CDB2CB400D535C3 /* HomeVC.swift */,
+			);
+			name = xiaomo;
+			sourceTree = "<group>";
+		};
+		CD89C7BF1CDADC8200D535C3 /* IAmStar */ = {
+			isa = PBXGroup;
+			children = (
+				CD89C7C61CDADCB800D535C3 /* FixOrientation.h */,
+				CD89C7C71CDADCB800D535C3 /* FixOrientation.m */,
+				CD89C7C81CDADCB800D535C3 /* GlobalVariables.swift */,
+				CD89C7C01CDADCAE00D535C3 /* ResultCell.swift */,
+				CD89C7C11CDADCAE00D535C3 /* ResultVC.swift */,
+				CD89C7C21CDADCAE00D535C3 /* IamStarViewController.swift */,
+			);
+			name = IAmStar;
+			sourceTree = "<group>";
+		};
 		FC40399438BCB1A61AACDAA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,7 +421,7 @@
 				16505D0E1B2FC1C400047AB9 /* CoreTelephony.framework */,
 				16505D0C1B2FC1AC00047AB9 /* QuartzCore.framework */,
 				16505D0A1B2FC19C00047AB9 /* SystemConfiguration.framework */,
-				2D17E618A64F42605C44BCF8 /* libPods.a */,
+				8A8E9653ACB9A736BEF662DB /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -411,6 +455,7 @@
 		16E2C3971B218F0500482E5E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = qiao;
 				TargetAttributes = {
@@ -443,6 +488,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD89C7CC1CDADCBF00D535C3 /* facehead.jpg in Resources */,
 				169D4FCD1B58C3C30079978F /* Main.storyboard in Resources */,
 				169D4FCC1B58C2FE0079978F /* LaunchScreen.xib in Resources */,
 				16505D011B2FC15800047AB9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -511,13 +557,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				16E2C3AB1B218F0500482E5E /* ViewController.m in Sources */,
+				CD89C7C41CDADCAE00D535C3 /* ResultVC.swift in Sources */,
 				169D4FCB1B58C1750079978F /* btRippleButtton.m in Sources */,
 				16E2C4351B21988100482E5E /* MBProgressHUD.m in Sources */,
+				CD89C7C31CDADCAE00D535C3 /* ResultCell.swift in Sources */,
 				16E2C3A81B218F0500482E5E /* AppDelegate.m in Sources */,
+				CD89C7D31CDB2CB400D535C3 /* HomeVC.swift in Sources */,
 				16E2C4321B2194AE00482E5E /* DoubleChoseViewController.m in Sources */,
+				CD89C7C51CDADCAE00D535C3 /* IamStarViewController.swift in Sources */,
+				CD89C7CA1CDADCB800D535C3 /* GlobalVariables.swift in Sources */,
 				16E2C42F1B21941900482E5E /* SingChoseViewController.m in Sources */,
 				168FD13E1B411C84000883A2 /* LaunchScreen.m in Sources */,
 				16D04B481B254417009BE577 /* LTBounceSheet.m in Sources */,
+				CD89C7D71CDB383B00D535C3 /* XMImagePIcker.swift in Sources */,
+				CD89C7C91CDADCB800D535C3 /* FixOrientation.m in Sources */,
 				16E2C3A51B218F0500482E5E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,6 +696,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -653,7 +707,7 @@
 					"$(PROJECT_DIR)/compareface/ShareSDK/UI",
 				);
 				INFOPLIST_FILE = compareface/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -664,6 +718,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "夫妻相";
+				SWIFT_OBJC_BRIDGING_HEADER = "compareface/compareface-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 x86_64 armv7s armv7";
 			};
@@ -675,6 +731,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -685,7 +742,7 @@
 					"$(PROJECT_DIR)/compareface/ShareSDK/UI",
 				);
 				INFOPLIST_FILE = compareface/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -696,6 +753,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "夫妻相";
+				SWIFT_OBJC_BRIDGING_HEADER = "compareface/compareface-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 			};

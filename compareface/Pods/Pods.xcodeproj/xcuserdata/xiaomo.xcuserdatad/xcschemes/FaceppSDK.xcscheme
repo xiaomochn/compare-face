@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DAB8F2FC0F0569F2C022D6C8'
+               BlueprintIdentifier = '3D678E4E108EDBA04AA21244'
                BlueprintName = 'FaceppSDK'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libFaceppSDK.a'>
+               BuildableName = 'FaceppSDK.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

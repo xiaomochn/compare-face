@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B9AA2DD29986CA7A3EE0EA55'
+               BlueprintIdentifier = '785CD02A57F99B2D04E2969F'
                BlueprintName = 'FlickerNumber'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libFlickerNumber.a'>
+               BuildableName = 'FlickerNumber.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

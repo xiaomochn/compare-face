@@ -14,6 +14,7 @@
 #import "WeiboApi.h"
 #import "WeiboSDK.h"
 #import <MobClick.h>
+#import "夫妻相-Swift.h"
 @interface AppDelegate ()
 
 @end
@@ -23,6 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     {
         [ShareSDK registerApp:@"877db0224436"];//字符串api20为您的ShareSDK的AppKey
       

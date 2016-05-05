@@ -1,25 +1,61 @@
 PODS:
+  - Alamofire (3.3.1)
+  - DGElasticPullToRefresh (1.0.3)
   - FaceppSDK (2.0.0)
   - FlickerNumber (0.2.2)
+  - ImagePickerSheetController (0.9.1)
   - MAOFlipViewController (0.0.1)
+  - Material (1.40.0)
+  - MJRefresh (3.1.0)
+  - PagingMenuController (0.9.1)
   - PEPhotoCropEditor (1.3.1)
   - PulsingHalo (0.0.6)
+  - SBJson (4.0.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SKPhotoBrowser (1.8.6)
+  - SwiftyJSON (2.3.2)
+  - UIActivityIndicator-for-SDWebImage (1.2):
+    - SDWebImage (~> 3.7)
   - UMengAnalytics-NO-IDFA (3.6.7)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - DGElasticPullToRefresh
   - FaceppSDK (~> 2.0.0)
   - FlickerNumber (~> 0.2.2)
+  - ImagePickerSheetController (~> 0.9.1)
   - MAOFlipViewController (~> 0.0.1)
+  - Material (~> 1.0)
+  - MJRefresh
+  - PagingMenuController
   - PEPhotoCropEditor (~> 1.3.1)
   - PulsingHalo (~> 0.0.1)
+  - SBJson (~> 4.0.2)
+  - SDWebImage (~> 3.7.3)
+  - SKPhotoBrowser
+  - SwiftyJSON
+  - UIActivityIndicator-for-SDWebImage
   - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   FaceppSDK: c83bcadb7bbc512a3bb792f3cda407e14e0208b1
   FlickerNumber: 2617ec93c7e4b7c359ef10c681d95ba60474ebf4
+  ImagePickerSheetController: 3c58c9fee6dcf36485222358a021f6b734f997ba
   MAOFlipViewController: cf4eaa68f3e638d3c77a1fe55d9c74c62d5b4bab
+  Material: b69e09c2ff1b1d1d5d897b07cd1da586357a9912
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  PagingMenuController: 95bab00761e1ba4f4f9fa6bf22ac71b065a675aa
   PEPhotoCropEditor: 613292fce009efd085e7aed975f1ebb3fec8bb7b
   PulsingHalo: aa37bd6d8fc964eda1987513665d960628ff719b
+  SBJson: c18691cc18375b14664ff0fec841f8c4faef1934
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SKPhotoBrowser: 2fa59b851b04358b186c811ca9e2b4aa4945aa33
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
 
 COCOAPODS: 0.39.0

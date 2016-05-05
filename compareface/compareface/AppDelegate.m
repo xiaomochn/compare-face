@@ -46,10 +46,10 @@
        
 
         //当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台 （注意：2个方法只用写其中一个就可以）
-        [ShareSDK  connectSinaWeiboWithAppKey:@"568898243"
-                                    appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
-                                  redirectUri:@"http://www.sharesdk.cn"
-                                  weiboSDKCls:[WeiboSDK class]];
+//        [ShareSDK  connectSinaWeiboWithAppKey:@"568898243"
+//                                    appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
+//                                  redirectUri:@"http://www.sharesdk.cn"
+//                                  weiboSDKCls:[WeiboSDK class]];
      
     }
     [MobClick startWithAppkey:@"55933f3867e58e3e5000408a" reportPolicy:BATCH   channelId:nil];

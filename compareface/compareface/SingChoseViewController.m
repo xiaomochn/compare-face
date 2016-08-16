@@ -473,7 +473,7 @@
     scale = MIN(scale, (kSCREEN_WIDTH-40)/imageToDisplay.size.width);
     scale = MIN(scale, (kSCREEN_HEIGHT/3*2)/imageToDisplay.size.height);
     
-    //    [imageView setImage:sourceImage];
+    // [imageView setImage:sourceImage];
     // perform detection in background thread
     
     if (imageView==nil) {

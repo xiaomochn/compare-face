@@ -182,7 +182,7 @@
                                        newImage.size.width * scale,
                                        newImage.size.height * scale)];
         [imageView setImage:newImage];
-       FaceppResult *resulu= [[[FaceppRecognition alloc] init] searchWithKeyFaceId:[result content][@"face"][0][@"face_id"] andFacesetId:nil orFacesetName:@"starlib3" andCount:nil async:NO];
+        FaceppResult *resulu= [[[FaceppRecognition alloc] init] searchWithKeyFaceId:[result content][@"face"][0][@"face_id"] andFacesetId:nil orFacesetName:@"starlib3" andCount:nil async:NO];
         
     } else {
         // some errors occurred
